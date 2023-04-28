@@ -1,0 +1,28 @@
+services:
+  local-db:
+    container_name: postgres
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '54320:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+  pg-admin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - 8080:80
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+       - ./test-data:/home/test-data
+    restart: unless-stopped
+volumes:
+  db:
+  pgadmin:

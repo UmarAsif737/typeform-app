@@ -1,0 +1,335 @@
+{
+    "share": {
+        "footer": {
+            "termsAndConditions": "Terms and Conditions",
+            "policy": "Privacy Policy",
+            "imprint": "Imprint",
+            "logo": "© InnoButler 2023"
+        },
+        "menu": {
+            "dashboard": "Dashboard",
+            "questions": "Questions"
+        },
+        "header": {
+            "defaultName": "Profile",
+            "signOut": "Sign out"
+        },
+        "signIn": {
+            "loginHeader": "Log into your account",
+            "forgotPasswordHeader": "Forgot your password?",
+            "loginButton": "Log in"
+        },
+        "signUp": {
+            "emailLabel": "Email address",
+            "emailPlaceholder": "Enter your email address",
+            "passwordLabel": "Password",
+            "passwordPlaceholder": "Enter your password",
+            "checkboxText": "I agree to the",
+            "conditionsLink": "Platform Terms and Conditions",
+            "signUpButton": "Sign up",
+            "haveAccountText": "Already have an account?",
+            "loginLink": "Log in",
+            "errorMessages": {
+                "requiredEmail": "Email address is required",
+                "requiredPassword": "Password is required", 
+                "confirm": "Please agree to our Platform Terms and Conditions",
+                "validPassword": "Please enter your password",
+                "numberOfDigits": "8 or more digits",
+                "atLeastOneNumber": "At least one number",
+                "upperLowerText": "Upper & lowercase letters",
+                "specialCharacter": "At least one special character",
+                "passwordTooltipText": "Your password must have:"
+            },
+            "sideBar": {
+                "title": "Welcome to InnoButler",
+                "footerTitle": "© InnoButler 2023", 
+                "footerTextTerms": "Terms and Conditions",
+                "footerTextPolicy": "Privacy Policy",
+                "footerTextImprint": "Imprint"
+            }
+        }
+    },
+    "questions": {
+        "clevel": {
+            "introduction": {
+                "heading": "Welcome",
+                "title": "Good Day Ma’am/Sir, My Name is Alfred.",
+                "description": "Can You Kindly fill out The Following information, So I Can Ideally Assist You In The Application Process For Your R&D Tax Credit.",
+                "buttons": {
+                    "cancel": "Cancel",
+                    "next": "Next"
+                }
+            }
+        }
+    },
+    "projects": {
+        "table": {
+            "createdAt": "Created at",
+            "requestedAmount": "Requested amount",
+            "progress": "Progress",
+            "status": "Status"
+        },
+        "create": {
+            "createProject": "Create project",
+            "assignUser": "Please assign the project manager",
+            "firstName": "First name",
+            "lastName": "Last name",
+            "userEmail": "Email",
+            "success": "Project successfully created!",
+            "sucesfullyCreatingYourProject": "Sucesfully creating your project",
+            "error": "Error creating project",
+            "errorWhileCreatingYourProject": "Error while creating your project."
+        },
+        "questions": {
+            "notEligble": "I Beg Your Pardon Ma’am/Sir. /n Unfortunately Your R&D Project Is Not Eligible For The Current R&D Tax Credit Scheme.",
+            "notEligibleNewsletter": "Feel Free To Subscribe To Our Newsletter So You Don't Miss Out On Potential Changes Within The Scheme.",
+            "tabsGeneral": "General",
+            "tabsDetails": "Details",
+            "general": {
+                "radioYes": "Yes",
+                "radioNo": "No",
+                "heading": "General Project Questions",
+                "hasEstimatedFigures": "Are the following figures provisional or estimated?",
+                "hasEstimatedFiguresTooltip": "'yes' if estimated values are given in at least one year of the project duration",
+                "isFundedBySubsidies": "Were/ Are parts of the personell and/ or contractor expenses within the EU/ EEA funded through public or private subsidies?",
+                "hasWorkingTrackRecord": "Please Confirm To Have The Following Personal Information From Each Employee Who Works On The R&D Project",
+                "hasWorkingTrackRecordTooltip": "University Diploma; Individual Tax Credit Number",
+                "hasPersonalDocumentsForEmployees": "Do You Have A Detailed Track Record Of All The Working Hours Of Your R&D Personnel?",
+                "hasPersonalDocumentsForEmployeesTooltip": "Excel Sheets; i.e. Replicon, Asana, Toggl",
+                "success": "Project successfully updated!",
+                "sucesfullyUpdatedYourProject": "sucesfully updated your project",
+                "error": "Error updating project",
+                "errorWhileUpdatingYourProject": "Error while updating your project.",
+                "financialFramework": {
+                    "title": "Financial Framework (For every started fiscal year of the project)",
+                    "year": "Year",
+                    "totalCost": "Total Cost",
+                    "personalCost": "R&D Personell Cost",
+                    "materialCostAndInvestment": "R&D Material Cost & Investments",
+                    "contractorCostInEU": "R&D Contractor cost within the EU/ EEA",
+                    "contractorCostOutsideEU": "R&D Contractor cost outside the EU/ EEA",
+                    "otherCost": "Other R&D costs (i.e. Storage costs, server hosting, maintenance etc.)",
+                    "addYear": "Add year"
+                },
+                "personalFramework": {
+                    "title": "Personell Framework (For every started fiscal year of the project)",
+                    "year": "Year",
+                    "personMonthsOfRD": "Person Months of R&D (with university degree)",
+                    "personMonthsOfTechnicans": "Person months of technicians",
+                    "personMonthsOfOthers": "Person Months of others",
+                    "addYear":"Add year"
+                },
+                "subsidiary": {
+                    "title": "Subsidiary",
+                    "year": "Year",
+                    "fundedPersonellCosts": "Address",
+                    "fundedContractorCostsInEU": "Funded Personell Costs",
+                    "addSubsidiary": "Funded Contractor Costs within the EU/ EEA"
+                }
+            },
+            "details": {
+                "heading": "Detailed Project Questions",
+                "startOfProject": "When Did Your R&D Project Start?",
+                "startOfProjectTooltip": "The Moment When You Assigned Your R&D Employees To The Project",
+                "startPeriods": {
+                    "beforeJan20": "before January '20",
+                    "afterJan20": "after January '20",
+                    "afterJuly20": "after July 30th '20"
+                },
+                "name": "What Is The Title Of Your R&D Project?",
+                "namePlaceholder": "i.e. All-In-One Polyphase Electric Motor",
+                "periodIndication": "Please indicate the scheduled time period of your R&D project",
+                "startOfPeriod": "Start of period",
+                "endOfPeriod": "End of period",
+                "type": "Please Choose The Type Of Your R&D Project?",
+                "types": {
+                    "fundamentalResearch": "Fundamental Reserach",
+                    "industrialResearch": "Industrial Research",
+                    "experimentalDevelopment": "Experimental Development",
+                    "marketDevelopment": "Market development/reserach",
+                    "improvementOfProduction": "Improvement of production system/ refresh of a product cylce",
+                    "productDevelopment": "Product Development with new qualities/ materials/ mechanics"
+                },
+                "categories": {
+                    "fullInternalResearch": "Full Internal research",
+                    "fullContractResearch": "Full Contract research (R&D fully commissioned)",
+                    "proRataContractResearch": "Pro Rata Contract research (R&D partially commissioned)",
+                    "cooperativeResearch": "Cooperative Research (Other Companies With Internal R&D Department And/Or other Research Institutes)"
+                },
+                "isRegisteredAtBSFZ": "Did you already register this R&D project with the BSFZ in the past?",
+                "isRegisteredAtBSFZTooltip": "If you tick yes, you agree with replacing the already BSFZ registered R&D project with the following project. If the following R&D project merely builds on previous projects, please tick 'No'",
+                "bsfzProjectId": "Please indicate the BSFZ project ID",
+                "majorityHasUniversityDegrees": "Do At Least 70% Of The Personell Working On The R&D Project Have university degrees?",
+                "majorityHasUniversityDegreesTooltip": "i.e. Dipl. Ing; Dr., Master",
+                "isCompatibleWithExistingEcosystems": "Will The End Product Of Your R&D Project Be Compatible With Existing Ecosystems?",
+                "category": "Please Choose A Category Of Your R&D Projec",
+                "majorityIsDevelopedFromScratch": "Did You Need To Develop At Least 60% Of The Components For Your R&D Project From Scratch?",
+                "majorityIsDevelopedFromScratchTooltip": "Including Strict Real World Testing And Simulations That Have To Comply With Newly Set Requirements.",
+                "mainContact": "Please Name The Main Contact Throughout The Application Process",
+                "mainContactPlaceholder": "i.e. Head Of R&D; Project Lead etc.",
+                "keywords": "Please name at least 3 keywords relating to your R&D project",
+                "keywordsPlaceholder": "i.e. smart home; autonomous driving; IoT",
+                "endGoalDescription": "Please Describe The End-Goal Of You R&D Project And Its Main Driving Force",
+                "endGoalDescriptionPlaceholder": "An All-In-One Electronic Motor With An Integrated Energy Accumulator That Functions Through Low Voltage.",
+                "compatibleEcosystems": "Please Name Compatible Ecosystems Of Your R&D Project",
+                "compatibleEcosystemsPlaceholder": "i.e. Connected appliances, Smart Home Security Systems, Autonomous Farming Equipment",
+                "basisOfProject": "On What Product/ Platform Is Your R&D Project Based On?",
+                "basisOfProjectPlaceholder": "i.e. 'The project Is Based On A Predeveloped Multiphase Engine, Which Served As A Proof Of Concept'",
+                "differenceToOtherProjects": "Please Name The Differentiating Factors Of Your Current Project To Previous Prototypes",
+                "differenceToOtherProjectsTooltip": "i.e. 'The Current Project Is A Complete Departure From Earlier Prototypes, As We Are Now Exploring The Integration Of All Components With Each Other As Well As Adding New Requirements Such As Compactness, Compatibility And Security Standards Within An Ecosystem'",
+                "processDescription": "Please Provide A Detailed Step-By-Step Description Of All Work Processes And Forms Of Activity As Well As Their Novel Character And Impact On The Ultimate Goal Of The Project",
+                "processDescriptionTooltip": "i.e. The first step was the preliminary design, here we defined the overall concept of the engine and identified transferable knowledge from previous studies. This lead to the design phase, where each part of the engine was designed using 3D design software based on preassigned requirements. This allowed us to focus on the performance of the parts, using the 'XY' analysis for stress and strain analysis. Then we looked at the system as a whole, using the 'XY' tool to simulate the engine's characteristics such as torque, speed and efficiency. Finally, we assembled a prototype and tested it. This allowed us to validate the data from the simulations and thus the whole concept.",
+                "currentRAndDStatus": "Please Describe The Current State Research&Development Of Your R&D Sector And The Industry",
+                "currentRAndDStatusTooltip": "i.e. 'Existing studies and publications highlight the potential of low-voltage multiphase electric motors by evaluating their efficiency, resilience and safety. There are only a few motors based on a multiphase design hence the required components are not available and difficult to construct. There is currently no complete solution for electric mobility.'",
+                "distinguishmentWithinSector": "Distinguish Your R&D Project From The Current Standard Of Research And Development Within Your Sector",
+                "distinguishmentWithinSectorTooltip": "i.e. 'Our concept is a breakthrough and fills the existing knowledge gap of electronic mobility. The project has therefore led to a patent application of our battery pack. Our solution could have a major impact on the overall market, as an all-in-one motor could facilitate the market entry for new EV brands that lack the know-how.'",
+                "uniquenessOfProduct": "How Does The Product Of Your R&D Project Differentiate Itself From The Current Lineup, Procedures, Services And Research Methods Within Your Company And Where Are You Facing Difficulties/ Uncertainties",
+                "uniquenessOfProductTooltip": "i.e. 'This project represents a major step forward in our modular electric drive solutions. The product represents an intermediate design that does not take into account certain constraints such as optimisation for production or the scalability of its design. Nevertheless, significant improvements have been made by integrating all circuits directly into the motor and the battery pack. This allows us to ensure that the concept is feasible and can create a know-how that relates to low-voltage multiphase motors.'",
+                "marketIntroduction": "Exploitation horizon / market introduction",
+                "marketIntroductions": {
+                    "exclusivelyScientific": "Exclusively scientific exploitation",
+                    "mediumTermCommercial": "Medium-term commercial exploitation (approx. 1-5 years)",
+                    "shortTermEconomic": "Short-term economic exploitation (less than one 1 year)"
+                },
+                "contractors": {
+                    "title": "Please List Your Contractor(s)",
+                    "name": "Name",
+                    "address": "Address",
+                    "legalForm": "Legal form",
+                    "isGermanCompany": "Is German Company",
+                    "type": "Type",
+                    "types": {
+                        "privateBusiness": "Private business",
+                        "affiliate": "Affiliate",
+                        "institute": "Institute"
+                    },
+                    "federalState": "Federal State (If registered in Germany)",
+                    "descriptionOfWork": "Description of work (max. 500 signs)",
+                    "cost": "Cost",
+                    "taxId": "Tax ID (If registered in Germany)",
+                    "addContractor": "Add contractor"
+                },
+                "researchPartners": {
+                    "title": "Please List Your Contractor(s)",
+                    "name": "Name",
+                    "address": "Address",
+                    "legalForm": "Legal form",
+                    "type": "Type",
+                    "types": {
+                        "privateBusiness": "Private business",
+                        "affiliate": "Affiliate",
+                        "institute": "Institute",
+                        "university": "University"
+                    },
+                    "federalState": "Federal State (If registered in Germany)",
+                    "cost": "Cost",
+                    "taxId": "Tax ID (If registered in Germany)",
+                    "addResearchPartner": "Add research partner"
+                },
+                "projectJournal": {
+                    "title": "Please Fill Out the follwing Project Journal",
+                    "tooltip": "Only For The Current Fiscal Year",
+                    "part": "Project Part",
+                    "timeSlot": "Time Slot",
+                    "budget": "Budget",
+                    "addProjectJournalPart": "Add project journal part"
+                },
+                "managerWorkingHour": {
+                    "title": "Please List The Working Hours And Tasks Of Your R&D Managers And If Applicable The Contract Research Part Of The R&D Project",
+                    "name": "Name",
+                    "hour": "Hours",
+                    "task": "Tasks",
+                    "addManagerWorkingHour": "Add manager working hour"
+                }
+            }   
+        }
+    },
+    "company": {
+        "details": {
+            "name": "Company name",
+            "namePlaceholder": "Enter your company name",
+            "address": "Address",
+            "addressPlaceholder": "Enter your company address",
+            "status": "Status",
+            "isGermanCompany": "Your Holding/ or any Subsidiary is registered in Germany?",
+            "taxId": "Tax Identification Number",
+            "taxIdPlaceholder": "Enter your tax identification number",
+            "taxOfficeName": "Corresponding Tax Office",
+            "taxOfficeNamePlaceholder": "Enter your corresponding tax office",
+            "fundingYear": "Funding Year",
+            "fundingYearPlaceholder": "Enter your funding year",
+            "registerNumber": "Register Number",
+            "registerNumberPlaceholder": "Enter your register number",
+            "registerCourtName": "Register Court Name",
+            "registerCourtNamePlaceholder": "Enter your register court name",
+            "legalRepresentatives": "Legal Representatives",
+            "legalRepresentativesPlaceholder": "Enter your legal representatives",
+            "legalForm": "Legal Form",
+            "legalFormPlaceholder": "Enter your legal form",
+            "industrySector": "Industry Sector",
+            "isIndustrialWorkshopCompany": "Is an Industrial Workshop Company",
+            "isNotIndustrialWorkshopCompany": "Is not an Industrial Workshop Company",
+            "isLegallyIndependent": "A Legally Independent Company",
+            "isNotLegallyIndependent": "The Entire group of companies/ holding",
+            "publicFundingAmount": "Please indicate the total R&D public funding amount of the last completed business year",
+            "publicFundingAmountPlaceholder": "Enter your public funding amount",   
+            "hasUpdatedElsterCertificate": "You Have An Up-To-Date ELSTER Certificate For Your Company",
+            "edit": { 
+                "success": "Company details updated successfully",
+                "sucesfullyUpdatedYourCompany": "You have successfully updated your company details",
+                "error": "Error updating company details",
+                "errorWhileUpdatingYourCompany": "Error while updating your company details"
+            },
+            "subCompany": {
+                "title": "Please List All Of Your Subsidiaries and their Tax ID's Within The German Market",
+                "tooltip": "Businesses In Which You Hold 50% Or More Of The Shares",
+                "name": "Name",
+                "address": "Address",
+                "legalForm": "Legal Form",
+                "federalState": "Federal State",
+                "taxId": "Tax ID",
+                "addName": "Add name"
+            },
+            "fiscalYear": {
+                "title": "Please Fill Out The Chart For The Last 3 Fiscal Years",
+                "tooltip": "Start-Ups and newly founded businesses can list fewer fiscal years accordingly",
+                "year": "Year",
+                "preliminaryData": "Preliminary Data (i.e. due to an outstanding tax audit)",
+                "abbreviatedFiscalYear": "Abbreviated Fiscal Year",
+                "timePeriodOfFiscalYear": "Time Period Of The Business Year",
+                "numberOfEmployees": "Number of Employees (Full Time)",
+                "numberOfRDEmployees": "Number of R&D Employees (Software Developers for IT-Companies)",
+                "revenue": "Revenue",
+                "internalCostsPersonell": "Internal Costs Personell",
+                "internalCostsMaterial": "Internal Costs Material and Investments",
+                "externalContractCostsInEU": "External Contract R&D Costs Within The EU/ EEA",
+                "externalContractCostsOutsideEU": "External Contract R&D Costs Outside The EU/ EEA",
+                "noFiscalYears": "No fiscal years",
+                "addYear":"Add year"
+            }
+        }
+    },
+    "dashboard": {
+        "registeredProjects": "registered projects",
+        "eligibleForFunding": "eligible for funding",
+        "noRegisteredProjects": "No registered projects",
+        "addNewProject": "Add new project",
+        "assignTaxCounsellor": {
+            "title": "Please assign a tax counsellor",
+            "firstName": "First name",
+            "lastName": "Last name",
+            "email": "Email", 
+            "success": "Successfully assigned internal tax counsellor",
+            "successfullyAssignedTaxCounsellor": "You have successfully assigned an internal tax counsellor",
+            "error": "Error assigned internal tax counsellor",
+            "errorWhileAssigningTaxCounsellor": "Error while assigning an internal tax counsellor"
+        }
+    },
+    "buttons": {
+        "cancel": "Cancel",
+        "next": "Next",
+        "back": "Back",
+        "save": "Save",
+        "edit": "Edit"
+    }
+}

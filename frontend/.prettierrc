@@ -1,0 +1,23 @@
+{
+    "semi": false,
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "singleQuote": true,
+    "printWidth": 120,
+    "arrowParens": "always",
+    "importOrder": [
+      "^lib/(.*)$",
+      "^config/(.*)$",
+      "^hooks/(.*)$",
+      "^utils/(.*)$",
+      "^context/(.*)$",
+      "^theme/(.*)$",
+      "^types/(.*)$",
+      "^pages/(.*)$",
+      "^components/(.*)$",
+      "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true
+  }
+  

@@ -1,0 +1,40 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "declaration": true,
+        "declarationMap": true,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "incremental": true,
+        "lib": ["es7"],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": false,
+        "noImplicitReturns": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "outDir": "dist",
+        "resolveJsonModule": true,
+        "sourceMap": true,
+        "strict": true,
+        "strictPropertyInitialization": false,
+        "target": "es2017",
+        "typeRoots": ["./node_modules/@types"],
+        "types": ["reflect-metadata", "node"],
+        "useUnknownInCatchVariables": true
+    },
+    "include": ["src/**/*.*", "typeorm.config.ts"],
+    "exclude": [
+        "node_modules",
+        "**/__mocks__/*",
+        "**/__mockData__/",
+        "test",
+        "dist",
+        "src/**/*.spec.ts",
+        "src/**/*.test.ts"
+    ]
+}
