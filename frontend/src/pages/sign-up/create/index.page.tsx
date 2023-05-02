@@ -3,6 +3,11 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import SignUpLayout from '../layout'
 import CreateForm from './CreateForm'
+import { useTranslation } from 'react-i18next'
+import { Box, Heading } from '@chakra-ui/react'
+import SignInForm from 'pages/sign-in/SignInForm'
+import { HeadingVariants } from 'theme'
+import CustomDivider from '../CustomDivider'
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }: any) => {
   return {
@@ -12,12 +17,38 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }: any) =>
   }
 }
 
-const CreatePage = () => {
-  return <CreateForm />
+// const CreatePage = () => {
+//   return <CreateForm />
+// }
+
+// CreatePage.getLayout = (page: React.ReactNode) => {
+//   return <SignUpLayout pageTitle="Create an account">{page}</SignUpLayout>
+// }
+
+// export default CreatePage
+
+const Page = () => {
+  return <SignUp />
 }
 
-CreatePage.getLayout = (page: React.ReactNode) => {
-  return <SignUpLayout pageTitle="Create an account">{page}</SignUpLayout>
+Page.getLayout = (page: React.ReactNode) => {
+  return <SignUpLayout pageTitle="Create a new account">{page}</SignUpLayout>
 }
 
-export default CreatePage
+const SignUp = () => {
+  const { t } = useTranslation()
+
+  return (
+    <Box w="24rem">
+      <Heading variant={HeadingVariants.Heading2} pb="4">
+        {t('share.signup.header')}
+      </Heading>
+
+      <CustomDivider />
+
+      <CreateForm />
+    </Box>
+  )
+}
+
+export default Page

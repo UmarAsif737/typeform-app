@@ -10,6 +10,7 @@ import { InputVariants, TextVariants, ButtonVariants } from 'theme'
 import { signIn } from 'next-auth/react'
 
 import Toast from 'components/Toast'
+import { useRouter } from 'next/router'
 
 type SubmitData = {
   email: string
@@ -23,8 +24,9 @@ const SignInForm = () => {
   const [isSubmitClicked, setIsSubmitClicked] = useState<boolean>(false)
   const [showPass, setShowPass] = useState(false)
   const toast = useToast()
+  const router = useRouter()
 
-  const { control, handleSubmit, getFieldState, setError } = useForm({
+  const { control, handleSubmit, getFieldState } = useForm({
     criteriaMode: 'all',
     mode: 'onChange',
   })
@@ -48,8 +50,6 @@ const SignInForm = () => {
 
       if (res?.error) {
         setIsLoading(false)
-        setError('email', { message: '' })
-        setError('password', { message: '' })
 
         toast({
           position: 'top-right',
@@ -69,7 +69,6 @@ const SignInForm = () => {
       }
     } catch (error) {
       setIsLoading(false)
-      setError('email', { message: t('share.signIn.errorMessages.incorrectEmailOrPassword') })
     }
   }
 

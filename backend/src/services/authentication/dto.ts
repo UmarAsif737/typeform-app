@@ -5,6 +5,7 @@ export class RegisterDto {
     lastName: string;
     email: string;
     password: string;
+    companyName: string
 }
 
 export class LoginDto {
@@ -37,8 +38,8 @@ export type RefreshJWTResponse = {
 };
 
 export type Tokens = {
-    access_token: string;
-    refresh_token: string;
+    accessToken: string;
+    refreshToken: string;
     user?: any;
 };
 

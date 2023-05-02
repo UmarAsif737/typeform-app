@@ -14,6 +14,13 @@ export const fetchAPIWithToken = (url: string, token: string, method = 'GET', bo
     body: JSON.stringify(body),
   })
 
+  export const fetchAPIWithoutToken = (url: string, method = 'GET', body?: any) =>
+  fetch(`${settings.baseURL}${url}`, {
+    method,
+    headers: { ...headers },
+    body: JSON.stringify(body),
+})
+
 export default function useFetchSWR(url: string): SWRHookResponse {
   const { data, error } = useSWR(url, fetchAPI)
 

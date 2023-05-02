@@ -1,44 +1,29 @@
-import { Box, Button, Checkbox, Flex, Input, InputGroup, Text, useToast } from '@chakra-ui/react'
+import { Box, Button, Checkbox, Flex, HStack, Input, InputGroup, Text, VStack, useToast } from '@chakra-ui/react'
 import { useTranslation } from 'next-i18next'
 import { FC, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-
 import { removeSpacesFromInputField } from 'lib/helper'
-
 import { ToastStatus } from 'config/types'
-
 import CustomLink from 'components/CustomLink'
 import PasswordInputEye from 'components/InputField/PasswordInputEye'
 import Toast from 'components/Toast'
 import { MultilineToolTipIcon } from 'components/Tooltip'
-
 import { emailValidation, passwordValidation } from '../validation'
 import { PasswordTooltip } from './PasswordTooltip'
 import { InputVariants, TextVariants, ButtonVariants } from 'theme'
+import { createAccount } from '../_api/createAccount'
+import { signIn } from 'next-auth/react'
 
 type SubmitData = {
   checkbox?: boolean
   email: string
   password: string
+  firstName: string
+  lastName: string
+  companyName: string
 }
 
-type CreateType = {
-  invitationDetails?: {
-    email: string
-    id: string
-    status: string
-    type: string
-  }
-}
-
-type sendingType = {
-  email?: string
-  password: string
-  userType?: string
-  userInvitationId?: string
-}
-
-const CreateForm: FC<CreateType> = ({ invitationDetails }) => {
+const CreateForm: FC = () => {
   const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isTooltipOpened, setIsTooltipOpened] = useState(false)
@@ -58,7 +43,10 @@ const CreateForm: FC<CreateType> = ({ invitationDetails }) => {
     mode: 'onChange',
     defaultValues: {
       password: '',
-      email: invitationDetails?.email,
+      email: '',
+      firstName: '',
+      lastName: '',
+      companyName: '',
     },
   })
   const passwordFieldState = getFieldState('password')
@@ -74,11 +62,31 @@ const CreateForm: FC<CreateType> = ({ invitationDetails }) => {
 
   const onSubmit = async (data: SubmitData) => {
     setIsLoading(true)
-    const { email, password } = data
+    const { email, password, firstName, lastName, companyName } = data
 
     try {
-      //   await createAccount(data)
-      console.log(email)
+      await createAccount({ email, password, firstName, lastName, companyName })
+      const res = await signIn('credentials', { email, password, redirect: false })
+
+      if (res?.error) {
+        setIsLoading(false)
+
+        toast({
+          position: 'top-right',
+          render: ({ onClose }) => (
+            <Toast
+              status={ToastStatus.ERROR}
+              title={t('share.signIn.errorMessages.loginErrorTitle')}
+              description={
+                res.error === t('share.signIn.errorMessages.apiLoginCredentialsError')
+                  ? t('share.signIn.errorMessages.loginCredentialsError')
+                  : res?.error || 'Error'
+              }
+              onClose={onClose}
+            />
+          ),
+        })
+      }
     } catch (error) {
       setIsLoading(false)
       const resError = error
@@ -94,7 +102,87 @@ const CreateForm: FC<CreateType> = ({ invitationDetails }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Box h="24" mb="3">
+      <HStack mt="48px" alignItems="flex-start" gap={5} w="100%">
+        <VStack alignItems="flex-start" w="50%">
+          <Text mb="1" variant={TextVariants.P14Semibold}>
+            {t('share.signUp.firstName')}
+          </Text>
+
+          <Controller
+            control={control}
+            name="firstName"
+            rules={{
+              required: `${t('share.signUp.errorMessages.firstName')}`,
+            }}
+            render={({ field: { onChange, ref, value }, fieldState: { error } }) => (
+              <>
+                <Input
+                  variant={error?.message && isSubmitClicked ? InputVariants.LoginError : handleInputVariant(value)}
+                  onChange={onChange}
+                  ref={ref}
+                  value={value}
+                  {...removeSpacesFromInputField('firstName', setValue, getValues)}
+                />
+                {error && isSubmitClicked && <Text variant={TextVariants.Error}>{error.message}</Text>}
+              </>
+            )}
+          />
+        </VStack>
+
+        <VStack alignItems="flex-start" w="50%">
+          <Text mb="1" variant={TextVariants.P14Semibold}>
+            {t('share.signUp.lastName')}
+          </Text>
+
+          <Controller
+            control={control}
+            name="lastName"
+            rules={{
+              required: `${t('share.signUp.errorMessages.lastName')}`,
+            }}
+            render={({ field: { onChange, ref, value }, fieldState: { error } }) => (
+              <>
+                <Input
+                  variant={error?.message && isSubmitClicked ? InputVariants.LoginError : handleInputVariant(value)}
+                  onChange={onChange}
+                  ref={ref}
+                  value={value}
+                  {...removeSpacesFromInputField('lastName', setValue, getValues)}
+                />
+                {error && isSubmitClicked && <Text variant={TextVariants.Error}>{error.message}</Text>}
+              </>
+            )}
+          />
+        </VStack>
+      </HStack>
+
+      <VStack alignItems="flex-start" w="100%" mt={5}>
+        <Text mb="1" variant={TextVariants.P14Semibold}>
+          {t('share.signUp.companyName')}
+        </Text>
+
+        <Controller
+          control={control}
+          name="companyName"
+          rules={{
+            required: `${t('share.signUp.errorMessages.companyName')}`,
+          }}
+          render={({ field: { onChange, ref, value }, fieldState: { error } }) => (
+            <>
+              <Input
+                variant={error?.message && isSubmitClicked ? InputVariants.LoginError : handleInputVariant(value)}
+                onChange={onChange}
+                ref={ref}
+                value={value}
+                {...removeSpacesFromInputField('companyName', setValue, getValues)}
+              />
+              {error && isSubmitClicked && <Text variant={TextVariants.Error}>{error.message}</Text>}
+            </>
+          )}
+        />
+      </VStack>
+
+      <VStack alignItems="flex-start" w="100%" mt={5}>
         <Text mb="1" variant={TextVariants.P14Semibold}>
           {t('share.signUp.emailLabel')}
         </Text>
@@ -109,10 +197,8 @@ const CreateForm: FC<CreateType> = ({ invitationDetails }) => {
           render={({ field: { onChange, ref, value }, fieldState: { error } }) => (
             <>
               <Input
-                placeholder={t('share.signUp.emailPlaceholder')}
                 variant={error?.message && isSubmitClicked ? InputVariants.LoginError : handleInputVariant(value)}
                 onChange={onChange}
-                disabled={!!invitationDetails?.email}
                 ref={ref}
                 value={value}
                 {...removeSpacesFromInputField('email', setValue, getValues)}
@@ -121,25 +207,24 @@ const CreateForm: FC<CreateType> = ({ invitationDetails }) => {
             </>
           )}
         />
-      </Box>
+      </VStack>
 
       <Controller
         control={control}
         name="password"
-        rules={passwordValidation(t)}
+        // rules={passwordValidation(t)}
         render={({ field: { onChange, ref, value }, fieldState: { error } }) => (
           <MultilineToolTipIcon
             label={<PasswordTooltip errors={errors.password} value={value} />}
             placement="right"
             isOpen={isTooltipOpened}
           >
-            <Box h="24" mb="3">
+            <Box h="24" mb="3" mt={5}>
               <Text mb="1" variant={TextVariants.P14Semibold}>
                 {t('share.signUp.passwordLabel')}
               </Text>
               <InputGroup onBlur={() => setIsTooltipOpened(false)} onFocus={() => setIsTooltipOpened(true)}>
                 <Input
-                  placeholder={t('share.signUp.passwordPlaceholder')}
                   variant={error?.message && isSubmitClicked ? InputVariants.LoginError : handleInputVariant(value)}
                   type={showPass ? 'text' : 'password'}
                   onChange={onChange}

@@ -18,7 +18,7 @@ export class AuthenticationController {
     ) {}
 
     @Post('sign-up')
-    async signUp(@Body() body: RegisterDto): Promise<User | never> {
+    async signUp(@Body() body: RegisterDto): Promise<AuthUser> {
         return this.authService.register(body);
     }
 

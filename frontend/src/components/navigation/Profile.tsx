@@ -1,13 +1,24 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import { Button, Center, Menu, MenuButton, MenuGroup, MenuItem, MenuList, Text } from '@chakra-ui/react'
+import { Button, Center, Menu, MenuButton, MenuItem, MenuList, Text } from '@chakra-ui/react'
+import { Logout } from 'components/Icons'
 import { useSession } from 'next-auth/react'
 import { useTranslation } from 'react-i18next'
 import { TextVariants } from 'theme'
+import { useRouter } from 'next/router'
 
 export default function Profile() {
   const { data: session } = useSession()
+  const router = useRouter()
   const user = session?.user
   const { t } = useTranslation()
+
+  const logout = () => {
+    localStorage.clear()
+    router.push('/sign-in')
+    // signOut({
+    //   callbackUrl: `/sign-in/create`,
+    // })
+  }
 
   return (
     <Menu>
@@ -21,9 +32,11 @@ export default function Profile() {
         </Center>
       </MenuButton>
 
-      {/* <MenuList bg="white">
-        <MenuItem color="gray.500">{t('share.header.signOut')}</MenuItem>
-      </MenuList> */}
+      <MenuList bg="white">
+        <MenuItem color="gray.500" icon={<Logout />} as={Button} onClick={logout}>
+          {t('share.header.signOut')}
+        </MenuItem>
+      </MenuList>
     </Menu>
   )
 }

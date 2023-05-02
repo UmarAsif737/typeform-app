@@ -9,11 +9,11 @@ type SideBarProps = {
   children: React.ReactNode
 }
 
-const SignUpLayout = ({ pageTitle = 'CEEZER', children }: SideBarProps) => {
+const SignUpLayout = ({ pageTitle = 'InnoButler', children }: SideBarProps) => {
   const { t } = useTranslation()
 
   return (
-    <Flex w="100%" bg="gray.50">
+    <Flex w="50%" bg="gray.50">
       <Head>
         <title>{pageTitle}</title>
       </Head>

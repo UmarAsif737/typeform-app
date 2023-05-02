@@ -30,7 +30,7 @@ export class User extends ExtendedBaseEntity {
     email: string;
 
     @IsEnum(UserRole)
-    @Column({ type: 'enum', enum: UserRole, nullable: true })
+    @Column({ type: 'enum', enum: UserRole, nullable: true, default: UserRole.PROJECT_MANAGER })
     role: UserRole;
 
     @IsBoolean()

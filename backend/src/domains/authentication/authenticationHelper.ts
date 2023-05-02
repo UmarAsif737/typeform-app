@@ -49,7 +49,7 @@ export class AuthenticationHelper {
 
     async returnGeneratedToken(user: AuthUser) {
         const tokens = await this.getTokens(user as any);
-        await this.updateRtHash(user.id, tokens.refresh_token);
+        await this.updateRtHash(user.id, tokens.refreshToken);
         tokens.user = this.returnedSearializedUser(user);
         return tokens;
     }
@@ -74,8 +74,8 @@ export class AuthenticationHelper {
         ]);
     
         return {
-          access_token: at,
-          refresh_token: rt,
+          accessToken: at,
+          refreshToken: rt,
         };
     }
 

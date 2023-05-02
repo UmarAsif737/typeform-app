@@ -20,7 +20,10 @@
             "loginButton": "Log in"
         },
         "signUp": {
+            "header": "Create a new account",
             "emailLabel": "Email address",
+            "firstName": "First name",
+            "lastName": "Last name",
             "emailPlaceholder": "Enter your email address",
             "passwordLabel": "Password",
             "passwordPlaceholder": "Enter your password",
