@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { AuthenticationHelper } from "src/domains/authentication/authenticationHelper";
+import { Company } from "src/entities/company";
 import { User } from "src/entities/user";
 import { Repository } from "typeorm";
 import { AuthUser, LoginDto, LoginResponse, RefreshJWTBody, RegisterDto } from "./dto";
