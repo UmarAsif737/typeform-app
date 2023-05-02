@@ -77,10 +77,10 @@ const Page = () => {
   const [project, setProject] = useState<Project>()
 
   useEffect(() => {
-    fetchProject(Number(query.projectId), session?.accessToken as string).then((res) => {
+    fetchProject(Number(query.projectId), session?.user?.accessToken as string).then((res) => {
       setProject(res)
     })
-  }, [session?.accessToken])
+  }, [session?.user?.accessToken])
 
   const handleGoBack = () => {
     router.back()
@@ -132,7 +132,7 @@ const Page = () => {
   }
 
   const onSubmit = async () => {
-    const token = session?.accessToken as string
+    const token = session?.user?.accessToken as string
     const formatedResponse = await formatData()
 
     try {

@@ -5,8 +5,10 @@ import { Document } from 'src/entities/document';
 import { Project } from 'src/entities/project';
 import { User } from 'src/entities/user';
 import { CompanyRepository } from 'src/repositories/companyRepository';
+import { DocumentRepository } from 'src/repositories/documentRepository';
 import { ProjectRepository } from 'src/repositories/projectRepository';
 import { UserRepository } from 'src/repositories/userRepository';
+import { DocumentService } from 'src/services/document/documentService';
 import { ProjectService } from 'src/services/project/projectService';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { ProjectController } from './project.controller';
@@ -18,10 +20,12 @@ import { ProjectController } from './project.controller';
         AuthenticationModule
     ],
     providers: [
-        ProjectService,
         CompanyRepository,
+        DocumentRepository,
+        DocumentService,
         ProjectRepository,
-        UserRepository
+        ProjectService,
+        UserRepository,
     ],
     controllers: [
         ProjectController

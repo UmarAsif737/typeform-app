@@ -123,7 +123,7 @@ const CompanyData = ({ company, isEdit }: Props) => {
   }, [company])
 
   const onSubmit = async () => {
-    const token = session?.accessToken as string
+    const token = session?.user?.accessToken as string
     const formatedResponse = await formatData()
 
     try {

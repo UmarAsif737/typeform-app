@@ -40,7 +40,7 @@ const SignUp = () => {
 
   return (
     <Box w="24rem">
-      <Heading variant={HeadingVariants.Heading2} pb="4">
+      <Heading variant={HeadingVariants.Heading2} pb="4" color="gray.600">
         {t('share.signup.header')}
       </Heading>
 

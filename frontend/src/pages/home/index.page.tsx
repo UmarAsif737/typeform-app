@@ -39,7 +39,7 @@ const Home = () => {
   const [hasTaxCounsellor, setHasTaxCounsellor] = useState<boolean>(true)
   const [hasMissingCompanyDetails, setHasMissingCompanyDetails] = useState<boolean>(true)
 
-  const userRole = session?.user.role
+  const userRole = session?.user?.role
 
   const handleNewProject = () => {
     router.push('/projects/create')
@@ -47,16 +47,18 @@ const Home = () => {
 
   useEffect(() => {
     loadPage()
-  }, [session?.accessToken])
+  }, [session, session?.user, session?.user?.accessToken])
+
+  console.log(session?.user)
 
   const loadPage = useCallback(async () => {
-    if (!session?.accessToken) return
+    if (!session?.user?.accessToken) return
 
-    const data = await fetchDashboardData(session?.accessToken as string)
+    const data = await fetchDashboardData(session?.user?.accessToken as string)
     setDashboardData(data)
     setHasTaxCounsellor(data.hasTaxCounsellor)
     setHasMissingCompanyDetails(data.hasMissingCompanyDetails)
-  }, [session?.accessToken])
+  }, [session?.user?.accessToken])
 
   return (
     <Flex

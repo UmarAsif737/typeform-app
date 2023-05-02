@@ -1,6 +1,7 @@
 const settings = {
     environment: process.env.NODE_ENV,
     baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+    backendURL: process.env.NEXT_PUBLIC_BACKEND_URL,
     auth: {
       secret: process.env.AUTH_SECRET || 'your_secret',
     },

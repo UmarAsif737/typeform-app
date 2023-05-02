@@ -13,6 +13,7 @@ import { PasswordTooltip } from './PasswordTooltip'
 import { InputVariants, TextVariants, ButtonVariants } from 'theme'
 import { createAccount } from '../_api/createAccount'
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 type SubmitData = {
   checkbox?: boolean
@@ -25,11 +26,13 @@ type SubmitData = {
 
 const CreateForm: FC = () => {
   const { t } = useTranslation()
+  const toast = useToast()
+  const router = useRouter()
+
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isTooltipOpened, setIsTooltipOpened] = useState(false)
   const [isSubmitClicked, setIsSubmitClicked] = useState<boolean>(false)
   const [showPass, setShowPass] = useState(false)
-  const toast = useToast()
 
   const {
     control,
@@ -86,6 +89,8 @@ const CreateForm: FC = () => {
             />
           ),
         })
+      } else {
+        router.push('/')
       }
     } catch (error) {
       setIsLoading(false)

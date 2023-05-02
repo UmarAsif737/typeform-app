@@ -8,17 +8,14 @@ import 'next-auth'
 
 declare module 'next-auth' {
   interface User {
-    user: {
-      role: string
-      email: string
-      firstName: string
-      id: number,
-      companyId: number
-      companyName: string
-    }
+    role: string
+    email: string
+    name: string
+    id: number,
+    companyId: number
+    companyName: string
     accessToken: string
   }
-  
   interface Session {
     accessToken: string
     user: User & DefaultSession['user']

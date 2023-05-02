@@ -162,6 +162,7 @@
                 "isRegisteredAtBSFZ": "Did you already register this R&D project with the BSFZ in the past?",
                 "isRegisteredAtBSFZTooltip": "If you tick yes, you agree with replacing the already BSFZ registered R&D project with the following project. If the following R&D project merely builds on previous projects, please tick 'No'",
                 "bsfzProjectId": "Please indicate the BSFZ project ID",
+                "screenshotOfParticipatingRDStaff": "Please Upload a screenshot/pdf of the time sheet of the participating R&D staff for the relevant retroactive fiscal years of the project in the following format",
                 "majorityHasUniversityDegrees": "Do At Least 70% Of The Personell Working On The R&D Project Have university degrees?",
                 "majorityHasUniversityDegreesTooltip": "i.e. Dipl. Ing; Dr., Master",
                 "isCompatibleWithExistingEcosystems": "Will The End Product Of Your R&D Project Be Compatible With Existing Ecosystems?",
@@ -333,6 +334,7 @@
         "next": "Next",
         "back": "Back",
         "save": "Save",
-        "edit": "Edit"
+        "edit": "Edit",
+        "upload": "Upload"
     }
 }

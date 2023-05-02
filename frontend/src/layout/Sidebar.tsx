@@ -1,7 +1,5 @@
-import { Flex, Heading, VStack } from '@chakra-ui/react'
-import { ButlerIcon } from 'components/Icons'
+import { Flex, Heading, Image } from '@chakra-ui/react'
 import { RiBuilding2Line, RiHome2Line } from 'react-icons/ri'
-
 import SidebarLink from '../components/navigation/SidebarLink'
 
 type Props = {
@@ -27,21 +25,27 @@ export default function Sidebar({ companyName }: Props) {
       // position="fixed"
       h="100vh"
     >
-      <ButlerIcon boxSize="10em" />
-      <Heading as="h2" textAlign="center">
+      <Image src={'/img/logo/logo.svg'} alt="InnoButler" transition="width .3s linear" mt={6} mb={10} ml={2.5} />
+      <Heading as="h4" textAlign="center" color="white">
         {companyName}
       </Heading>
 
-      <VStack justify="center" align="center" mt="15vh" w="full" gap={4}>
-        {Object.keys(navItems).map((key) => (
-          <SidebarLink
-            key={key}
-            href={navItems[key as keyof typeof navItems].href}
-            label={key}
-            icon={navItems[key as keyof typeof navItems].icon}
-          />
-        ))}
-      </VStack>
+      {companyName ? (
+        <Flex flexDir="column" alignItems="flex-start" mt="15vh" w="full">
+          {Object.keys(navItems).map((key) => (
+            <SidebarLink
+              key={key}
+              href={navItems[key as keyof typeof navItems].href}
+              label={key}
+              icon={navItems[key as keyof typeof navItems].icon}
+            />
+          ))}
+        </Flex>
+      ) : (
+        <Heading as="h6" textAlign="center" color="white">
+          Welcome to InnoButler
+        </Heading>
+      )}
     </Flex>
   )
 }

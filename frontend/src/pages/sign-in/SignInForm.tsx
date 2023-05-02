@@ -46,7 +46,11 @@ const SignInForm = () => {
     const { email, password } = data
 
     try {
-      const res = await signIn('credentials', { email, password, redirect: false })
+      const res = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      })
 
       if (res?.error) {
         setIsLoading(false)
@@ -66,6 +70,8 @@ const SignInForm = () => {
             />
           ),
         })
+      } else {
+        router.push('/home')
       }
     } catch (error) {
       setIsLoading(false)
@@ -74,7 +80,7 @@ const SignInForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Box h="24" mt="48px">
+      <Box h="24" mt={20}>
         <Text mb="1" variant={TextVariants.P14Semibold}>
           {t('share.signUp.emailLabel')}
         </Text>
@@ -159,7 +165,7 @@ const SignInForm = () => {
       <Text variant={TextVariants.P14Standart} mr="1" mt="8">
         <Trans i18nKey="share.signIn.signUpNow">
           Don&apos;t have an accout?
-          <CustomLink href="/sign-up/create" textDecoration="underline">
+          <CustomLink href="/sign-up/create" textDecoration="underline" ml={1}>
             Sign up now
           </CustomLink>
         </Trans>

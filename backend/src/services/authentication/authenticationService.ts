@@ -4,7 +4,7 @@ import { AuthenticationHelper } from "src/domains/authentication/authenticationH
 import { Company } from "src/entities/company";
 import { User } from "src/entities/user";
 import { Repository } from "typeorm";
-import { AuthUser, LoginDto, LoginResponse, RefreshJWTBody, RegisterDto } from "./dto";
+import { AuthUser, LoginDto, LoginResponse, RefreshJWTBody, RegisterDto, SessionUser } from "./dto";
 
 
 @Injectable()
@@ -13,37 +13,37 @@ export class AuthenticationService {
     @InjectRepository(User) private readonly repository: Repository<User>
 
     async register(body: RegisterDto): Promise<AuthUser> {
-      const { firstName, lastName, email, password, companyName }: RegisterDto = body;
-      let user = await this.repository.findOne({ where: { email } });
-  
-      if (user) {
-        throw new HttpException('Conflict', HttpStatus.CONFLICT);
-      }
+        const { firstName, lastName, email, password, companyName }: RegisterDto = body;
+        let user = await this.repository.findOne({ where: { email } });
+    
+        if (user) {
+          throw new HttpException('Conflict', HttpStatus.CONFLICT);
+        }
 
-      const company = await Company.create({ name: companyName });
-      await company.save();
-  
-      user = new User();
-      user.firstName = firstName;
-      user.lastName = lastName;
-      user.email = email;
-      user.password = this.helper.encodePassword(password);
-      user.company = company;
-  
-      const newUser = await this.repository.save(user);
+        const company = await Company.create({ name: companyName });
+        await company.save();
+    
+        user = new User();
+        user.firstName = firstName;
+        user.lastName = lastName;
+        user.email = email;
+        user.password = this.helper.encodePassword(password);
+        user.company = company;
+    
+        const newUser = await this.repository.save(user);
 
-      const authUser: AuthUser = {
-        id: newUser.id,
-        email: newUser.email,
-        firstName: newUser.firstName,
-        role: newUser.role,
-        companyId: newUser.company.id,
-        companyName: newUser.company.name
-      }
-      return authUser
-  }
+        const authUser: AuthUser = {
+          id: newUser.id,
+          email: newUser.email,
+          name: newUser.firstName,
+          role: newUser.role,
+          companyId: newUser.company.id,
+          companyName: newUser.company.name
+        }
+        return authUser
+    }
 
-    async login(body: LoginDto): Promise<LoginResponse> {
+    async login(body: LoginDto): Promise<SessionUser> {
         const { email, password }: LoginDto = body;
         const user = await this.repository.findOne({ where: { email }, relations: [ 'company' ] });
 
@@ -60,15 +60,17 @@ export class AuthenticationService {
         await this.repository.update(user.id, { lastActive: new Date() });
     
         const token =  await this.helper.generateToken(user);
-        const authUser: AuthUser = {
+        const sessionUser: SessionUser = {
           id: user.id,
           email: user.email,
-          firstName: user.firstName,
+          name: user.firstName,
           role: user.role,
           companyId: user.company.id,
-          companyName: user.company.name
+          companyName: user.company.name,
+          accessToken: token
         }
-        return { token, user: authUser }
+
+        return sessionUser
     }
     
     async refresh(user: AuthUser): Promise<any> {
@@ -76,4 +78,5 @@ export class AuthenticationService {
         const data = await this.helper.returnGeneratedToken(user);
         return data
     }
+
 }

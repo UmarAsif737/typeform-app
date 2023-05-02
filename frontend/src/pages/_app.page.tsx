@@ -5,7 +5,7 @@ import { appWithTranslation } from 'next-i18next'
 import { DefaultSeo } from 'next-seo'
 import defaultSEOConfig from '../../next-seo.config'
 import Layout from 'layout'
-import { Chakra } from 'components/Charka'
+import { Chakra } from 'components/Chakra'
 import { SessionProvider } from 'next-auth/react'
 
 const InnoButlerApp = ({ Component, pageProps }: AppProps) => {

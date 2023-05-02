@@ -20,7 +20,7 @@ export default function SidebarLink({ icon, label, href }: SidebarLinkProps) {
       color="text.dark"
       w="full"
     >
-      <HStack justify="center" align="center">
+      <HStack align="center">
         <Icon as={icon} boxSize="25px" />
         <Text variant={TextVariants.P16Standart} color="white">
           {label}

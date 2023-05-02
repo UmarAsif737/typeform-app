@@ -1,4 +1,5 @@
-import { Body, ClassSerializerInterceptor, Controller, Get, Param, Post, Put, UseInterceptors } from "@nestjs/common";
+import { Body, ClassSerializerInterceptor, Controller, Get, Param, Post, Put, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { FileInterceptor } from "@nestjs/platform-express";
 import { CurrentUser } from "src/domains/authentication/decorators/currentUser.decorator";
 import { Roles } from "src/domains/authentication/decorators/roles.decorator";
 import { Project } from "src/entities/project";
@@ -8,6 +9,7 @@ import { AssignUserDto, CreateProjectDto, GeneralProjectDataDto, ProjectDataDto,
 import { ProjectService } from "src/services/project/projectService";
 import { FULL_ACCESS } from "src/services/user/dto";
 
+@Roles(FULL_ACCESS)
 @Controller('/projects')
 @UseInterceptors(ClassSerializerInterceptor)
 export class ProjectController {
@@ -35,7 +37,7 @@ export class ProjectController {
         return await this.projectService.findProjectData(companyId);
     }
 
-    @Roles(FULL_ACCESS)
+    // @Roles(FULL_ACCESS)
     @Post('/')
     async createProject(
         @CurrentUser('user') user: AuthUser,
@@ -55,13 +57,15 @@ export class ProjectController {
 
     // @Roles([UserRole.TAX_COUNSELLOR, UserRole.PROJECT_MANAGER])
     @Roles(FULL_ACCESS)
+    @UseInterceptors(FileInterceptor('document'))
     @Put('/:id')
     async updateProject(
         @Param('id') id: number, 
         @CurrentUser('user') user: AuthUser,
-        @Body() projectInput: UpdateProjectDto
+        @Body() projectInput: UpdateProjectDto,
+        @UploadedFile() screenshotOfParticipatingRDStaff?: Express.Multer.File
     ): Promise<Project> {
-        return await this.projectService.updateProject(id, projectInput);
+        return await this.projectService.updateProject(id, projectInput, user.id, screenshotOfParticipatingRDStaff);
     }
 
 }  

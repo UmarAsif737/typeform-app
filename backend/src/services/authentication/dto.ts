@@ -5,7 +5,7 @@ export class RegisterDto {
     lastName: string;
     email: string;
     password: string;
-    companyName: string
+    companyName: string;
 }
 
 export class LoginDto {
@@ -16,10 +16,14 @@ export class LoginDto {
 export class AuthUser {
     id: number;
     email: string;
-    firstName: string;
+    name: string;
     role: UserRole;
     companyId: number;
-    companyName: string
+    companyName: string;
+}
+
+export class SessionUser extends AuthUser {
+    accessToken: string;
 }
 
 export class LoginResponse {

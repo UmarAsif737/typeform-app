@@ -1,19 +1,22 @@
-import { VStack, Text, Flex, FormLabel, Radio, RadioGroup, Box, Input } from '@chakra-ui/react'
+import { VStack, Text, Flex, FormLabel, Radio, RadioGroup, Box, Input, Button, Icon } from '@chakra-ui/react'
+import FileUpload from 'components/FileUpload'
 import { ToolTipIcon } from 'components/Tooltip'
 import { Control, Controller, FieldValues, UseFormRegister } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { TextVariants } from 'theme'
+import { FiFile } from 'react-icons/fi'
 
 type Props = {
   isDisabled: boolean
   isCreated: boolean
+  projectId: number
   inputVariant: string
   control: Control<FieldValues, any>
   register: UseFormRegister<FieldValues>
 }
 
 //status === TYPE_FILLED_OUT
-const ProjectDetailsForm2 = ({ isDisabled, isCreated = false, control, inputVariant, register }: Props) => {
+const ProjectDetailsForm2 = ({ isDisabled, isCreated = false, projectId, control, inputVariant, register }: Props) => {
   const { t } = useTranslation()
 
   return (
@@ -64,6 +67,18 @@ const ProjectDetailsForm2 = ({ isDisabled, isCreated = false, control, inputVari
           </VStack>
         </VStack>
       </Flex>
+
+      <VStack>
+        <Text variant={TextVariants.P14Semibold} color="gray.500">
+          {t('projects.questions.details.screenshotOfParticipatingRDStaff')}
+        </Text>
+
+        <FileUpload accept="image/*, pdf" register={register('screenshotOfParticipatingRDStaff')}>
+          <Button leftIcon={<Icon as={FiFile} />}>{t('buttons.upload')}</Button>
+        </FileUpload>
+
+        {/* <FormErrorMessage>{errors.file_ && errors?.file_.message}</FormErrorMessage> */}
+      </VStack>
 
       <Flex flexDirection="column" w="100%" pb={5}>
         <FormLabel>

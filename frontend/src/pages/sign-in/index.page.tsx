@@ -1,12 +1,12 @@
 import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { Box, Heading } from '@chakra-ui/react'
+import { Box, Heading, VStack } from '@chakra-ui/react'
 import { useTranslation } from 'next-i18next'
 import SignInForm from './SignInForm'
 import CustomDivider from '../sign-up/CustomDivider'
 import SignUpLayout from 'pages/sign-up/layout'
 import { HeadingVariants } from 'theme'
-import useRedirectLoggedUser from './useRedirectLoggedUser'
+// import useRedirectLoggedUser from './useRedirectLoggedUser'
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }: any) => {
   return {
@@ -26,18 +26,20 @@ Page.getLayout = (page: React.ReactNode) => {
 
 const SignIn = () => {
   const { t } = useTranslation()
-  useRedirectLoggedUser()
+  // useRedirectLoggedUser()
 
   return (
-    <Box w="24rem">
-      <Heading variant={HeadingVariants.Heading2} pb="4">
-        {t('share.signIn.loginHeader')}
-      </Heading>
+    <VStack align="center">
+      <Box>
+        <Heading variant={HeadingVariants.Heading2} pb={5} color="gray.600">
+          {t('share.signIn.loginHeader')}
+        </Heading>
 
-      <CustomDivider />
+        <CustomDivider />
 
-      <SignInForm />
-    </Box>
+        <SignInForm />
+      </Box>
+    </VStack>
   )
 }
 

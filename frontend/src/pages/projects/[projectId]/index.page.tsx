@@ -56,10 +56,10 @@ const Page = () => {
   }, [])
 
   useEffect(() => {
-    fetchProject(Number(query.projectId), session?.accessToken as string).then((res) => {
+    fetchProject(Number(query.projectId), session?.user?.accessToken as string).then((res) => {
       setProject(res)
     })
-  }, [session?.accessToken])
+  }, [session?.user?.accessToken])
 
   const updateHash = (index: number) => {
     setTabsSelection(index)

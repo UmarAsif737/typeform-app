@@ -50,20 +50,20 @@ const Page = () => {
 
   useEffect(() => {
     loadPage()
-  }, [session?.accessToken])
+  }, [session?.user?.accessToken])
 
   const loadPage = useCallback(async () => {
-    if (!session?.accessToken) return
+    if (!session?.user?.accessToken) return
 
-    const data = await fetchProject(Number(query.projectId), session?.accessToken as string)
+    const data = await fetchProject(Number(query.projectId), session?.user?.accessToken as string)
     setProject(data)
-  }, [session?.accessToken, query.projectId])
+  }, [session?.user?.accessToken, query.projectId])
 
   useEffect(() => {
     if (project) {
       setStatus(project.status)
     }
-  }, [session?.accessToken, project])
+  }, [session?.user?.accessToken, project])
 
   const handleBack = () => {
     router.back()
@@ -138,7 +138,10 @@ const Page = () => {
         })
       : undefined
 
-    return {
+    const formData = new FormData()
+    formData.append('screenshotOfParticipatingRDStaff', values.screenshotOfParticipatingRDStaff[0])
+
+    const input = {
       name: values.name,
       startOfProject: values.startOfProject?.value,
       startOfPeriod: values.startOfPeriod,
@@ -169,18 +172,21 @@ const Page = () => {
       researchPartners: formatedResearchPartners,
       projectJournals: formatedProjectJournals,
       managerWorkingHours: formatedManagerWorkingHours,
+      screenshotOfParticipatingRDStaff: values.screenshotOfParticipatingRDStaff[0],
     }
+    return { input, formData }
   }
 
   const onSubmit = async () => {
-    const token = session?.accessToken as string
+    const token = session?.user?.accessToken as string
     const formatedResponse = await formatData()
-    updateProject(Number(query.projectId), token, formatedResponse)
-    if (status === ProjectStatus.FROM_SCRATCH_FILLED_OUT) {
-      router.push('/home')
-      return
-    }
-    loadPage()
+    console.log(formatedResponse)
+    // updateProject(Number(query.projectId), token, formatedResponse)
+    // if (status === ProjectStatus.FROM_SCRATCH_FILLED_OUT) {
+    //   router.push('/home')
+    //   return
+    // }
+    // loadPage()
   }
 
   return (
@@ -212,6 +218,7 @@ const Page = () => {
             isCreated={true}
             inputVariant={InputVariants.WithBorder}
             register={register}
+            projectId={project.id}
           />
         )}
         {status === ProjectStatus.PERSONELL_FILLED_OUT && (

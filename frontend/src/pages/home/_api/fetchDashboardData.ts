@@ -1,10 +1,9 @@
 import { fetchAPIWithToken } from 'hooks/useFetchSWR'
-import { makeGetUrlWithParams } from 'utils/makeUrl'
+import { makeUrl } from 'utils/makeUrl'
 
 export const fetchDashboardData = async (token: string): Promise<any> => {
-  const url = makeGetUrlWithParams('/dashboard')
-  const response = await fetchAPIWithToken(url, token)
-
+  const response = await fetchAPIWithToken(makeUrl(`/dashboard`), token)
+  console.log(response)
   const res = await response.json()
 
   if (!response.ok) {

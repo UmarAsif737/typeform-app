@@ -1,5 +1,5 @@
 export class FileUploadBody {
-    filePath: string;
     fileName: string;
-    fileType: string;
+    dataBuffer: Buffer
+    fileType?: string;
 }

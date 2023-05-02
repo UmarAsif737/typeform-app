@@ -52,7 +52,7 @@ const Page = () => {
     const values = getValues()
     return {
       name: values.name,
-      calculatedTaxCredit: values.calculatedTaxCredit,
+      calculatedTaxCredit: Number(values.calculatedTaxCredit),
       user: {
         firstName: values.firstName,
         lastName: values.lastName,
@@ -62,11 +62,11 @@ const Page = () => {
   }
 
   const onSubmit = async () => {
-    const token = session?.accessToken as string
+    const token = session?.user?.accessToken as string
     const formattedData = await formatData()
 
     try {
-      createProject(token, formattedData)
+      await createProject(token, formattedData)
       router.push('/home')
 
       toast(
@@ -117,7 +117,7 @@ const Page = () => {
           </Text>
           <Box w="100%" borderWidth={1} borderColor="gray.300" borderRadius={4}>
             <Input
-              id="name"
+              id="calculatedTaxCredit"
               {...register('calculatedTaxCredit', {
                 required: 'This is required',
               })}

@@ -38,10 +38,10 @@ const Page = () => {
   const userRole = session?.user.role
 
   useEffect(() => {
-    fetchCompanyDetails(session?.accessToken as string).then((res) => {
+    fetchCompanyDetails(session?.user?.accessToken as string).then((res) => {
       setCopmany(res)
     })
-  }, [session?.accessToken])
+  }, [session?.user?.accessToken])
 
   return (
     <Flex direction="column" justifyContent="flex-start" minHeight="70vh" mb={8} w="100%">

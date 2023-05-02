@@ -29,10 +29,10 @@ const Page = () => {
   const [company, setCopmany] = useState<Company>()
 
   useEffect(() => {
-    fetchCompanyDetails(session?.accessToken as string).then((res) => {
+    fetchCompanyDetails(session?.user?.accessToken as string).then((res) => {
       setCopmany(res)
     })
-  }, [session?.accessToken])
+  }, [session?.user?.accessToken])
 
   return (
     <Flex direction="column" justifyContent="flex-start" minHeight="70vh" w="100%">

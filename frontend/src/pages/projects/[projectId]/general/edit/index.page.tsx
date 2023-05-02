@@ -31,10 +31,10 @@ const Page = () => {
   const [project, setProject] = useState<Project>()
 
   useEffect(() => {
-    fetchProject(Number(query.projectId), session?.accessToken as string).then((res) => {
+    fetchProject(Number(query.projectId), session?.user?.accessToken as string).then((res) => {
       setProject(res)
     })
-  }, [session?.accessToken])
+  }, [session?.user?.accessToken])
 
   return (
     <Flex direction="column" justifyContent="flex-start" minHeight="70vh" w="100%">

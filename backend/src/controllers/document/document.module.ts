@@ -7,6 +7,7 @@ import { User } from 'src/entities/user';
 import { CompanyRepository } from 'src/repositories/companyRepository';
 import { DocumentRepository } from 'src/repositories/documentRepository';
 import { ProjectRepository } from 'src/repositories/projectRepository';
+import { UserRepository } from 'src/repositories/userRepository';
 import { DocumentService } from 'src/services/document/documentService';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { DocumentController } from './document.controller';
@@ -18,10 +19,11 @@ import { DocumentController } from './document.controller';
         AuthenticationModule
     ],
     providers: [
+        CompanyRepository,
         DocumentService,
         DocumentRepository,
-        CompanyRepository,
         ProjectRepository,
+        UserRepository
     ],
     controllers: [
         DocumentController

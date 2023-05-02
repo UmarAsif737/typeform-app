@@ -10,11 +10,11 @@ export class Document extends ExtendedBaseEntity {
     @Column()
     fileName: string;
 
-    @Column()
-    filePath: string;
-
-    @Column()
+    @Column({ nullable: true })
     fileType: string;
+
+    @Column({ type: 'bytea'})
+    data: Uint8Array;
 
     @IsDate()
     @DeleteDateColumn()

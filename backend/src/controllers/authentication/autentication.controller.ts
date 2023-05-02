@@ -1,8 +1,9 @@
 import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { CurrentUser } from 'src/domains/authentication/decorators/currentUser.decorator';
 import { Public } from 'src/domains/authentication/decorators/public.decorator';
 import { User } from 'src/entities/user';
 import { AuthenticationService } from 'src/services/authentication/authenticationService';
-import { AuthUser, LoginResponse, RefreshJWTBody, RefreshJWTResponse, RegisterDto } from 'src/services/authentication/dto';
+import { AuthUser, LoginResponse, RefreshJWTBody, RefreshJWTResponse, RegisterDto, SessionUser } from 'src/services/authentication/dto';
 
 
 export type RefreshTokenDto = {
@@ -23,7 +24,7 @@ export class AuthenticationController {
     }
 
     @Post('sign-in')
-    async signIn(@Body() body: RegisterDto): Promise<LoginResponse> {
+    async signIn(@Body() body: RegisterDto): Promise<SessionUser> {
         return this.authService.login(body);
     }
 
@@ -32,4 +33,5 @@ export class AuthenticationController {
         const user = body.user;
         return this.authService.refresh(user);
     }
+
 }

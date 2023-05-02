@@ -28,7 +28,7 @@ const AssignTaxCounsellor = ({ refresh }: Props) => {
   }
 
   const onSubmit = async () => {
-    const token = session?.accessToken as string
+    const token = session?.user?.accessToken as string
     const formattedData = await formatData()
 
     try {

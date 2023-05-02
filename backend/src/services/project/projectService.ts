@@ -17,6 +17,7 @@ import { createManagerWorkingHours } from "src/domains/managerWorkingHour/create
 import { createFinancialFrameworks } from "src/domains/financialFramework/createFinancialFrameworks";
 import { createPersonalFrameworks } from "src/domains/personalFramework/createPrersonalFrameworks";
 import { createPrivateOrPrivateSubsidiesCosts } from "src/domains/privateOrPrivateSubsidiesCost/createPrivateOrPrivateSubsidiesCosts";
+import { DocumentService } from "../document/documentService";
 
 
 @Injectable()
@@ -26,6 +27,7 @@ export class ProjectService {
     @Inject(UserRepository) private readonly userRepository: UserRepository
     @Inject(CompanyRepository) private readonly companyRepository: CompanyRepository
     @Inject(ProjectRepository) private readonly customProjectRepository: ProjectRepository
+    @Inject(DocumentService) private readonly documentService: DocumentService
 
     async findProject(id: number): Promise<Project> {
         return await this.customProjectRepository.findProjectWithRelations(id);
@@ -81,11 +83,18 @@ export class ProjectService {
     }
 
     //TODO: add manager
-    async updateProject(id: number, projectBody: UpdateProjectDto): Promise<Project> {
+    async updateProject(id: number, projectBody: UpdateProjectDto, currentUserId: number, screenshotOfParticipatingRDStaff?: Express.Multer.File): Promise<Project> {
         const project = await this.customProjectRepository.findProjectWithRelations(id);
-        console.log(project)
         const status = handleProjectStatus(project.status, projectBody);
 
+        if (screenshotOfParticipatingRDStaff) {
+            await this.documentService.uploadDocument(
+                screenshotOfParticipatingRDStaff, 
+                project.id, 
+                currentUserId, 
+                'screenshotOfParticipatingRDStaff'
+            )
+        }
 
         //TODO check if relation already exisits
         //TODO check that it's not empty
@@ -101,7 +110,6 @@ export class ProjectService {
 
         let projectJournals;
         if (projectBody.projectJournals) {
-            console.log(projectBody.projectJournals)
             projectJournals = await createProjectJournals(projectBody.projectJournals);
         }
 

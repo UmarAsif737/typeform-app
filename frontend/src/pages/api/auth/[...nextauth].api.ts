@@ -1,5 +1,5 @@
 import moment from 'moment'
-
+import _ from 'lodash'
 import { JWT } from 'next-auth/jwt'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
@@ -13,20 +13,28 @@ type SessionPropType = {
 
 const headers = { 'content-type': 'application/json;charset=UTF-8' }
 
-async function refreshAccessToken(tokenObject: JWT) {
+async function refreshAccessToken(tokenObject: any) {
   const token = tokenObject as any;
 
   try {
+
+
+  
     const response = await fetch(`${settings.baseURL}/auth/refresh`, {
       method: 'POST',
       headers,
       body: JSON.stringify({ token: token.accessToken, user: token.user }),
     })
 
+    
     const tokenResponse = await response.json()
-    return tokenResponse
+    return {
+      user: tokenResponse.user,
+      accessToken: tokenResponse.accessToken,
+    }
 
   } catch (error) {
+    console.log(error)
     return {
       ...tokenObject,
       error: 'RefreshAccessTokenError',
@@ -44,7 +52,7 @@ export default NextAuth({
       },
       async authorize(credentials): Promise<User | null> {
 
-        const response = await fetch(`${settings.baseURL}/auth/sign-in`, {
+        const response = await fetch(`http://localhost:3001/auth/sign-in`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -54,49 +62,29 @@ export default NextAuth({
             password: credentials?.password,
           }),
         });
+        const user  = await response.json();
 
-        const res = await response.json();
-
-        if (res) {
-          return {
-            user: {
-              role: res.user.role,
-              email: res.user.email,
-              firstName: res.user.firstName,
-              id: res.user.id,
-              companyId: res.user.companyId,
-              companyName: res.user.companyName,
-            },
-            accessToken: res.token,
-          } as User
-
+        if (user) {
+          return user
         } else {
-          return null;
+        // If you return null then an error will be displayed advising the user to check their details.
+          throw new Error('something went wrong while signing in')
+        // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       },
     }),
   ],
 
+  
   callbacks: {
-    async jwt({ token, user }: any) {
-      // if (user) {
-      //   token.accessToken = user.accessToken
-      // }
-      return await refreshAccessToken(token)
+    async jwt({ token, user }) {
+      return { ...token, ...user }
     },
-
-    async session({ session, token }: SessionPropType) {
-      const tokenObject = token as any
-
-      // session.user = tokenObject.user.user;
-      // session.accessToken = tokenObject.user.token
-
-      // return session;
-
-      // session.user = token as any;
-      return session;
-    },
-
+    
+    async session({ session, token, user }) {
+      session.user = token as any;
+      return session
+    }
   },
 
   pages: {
