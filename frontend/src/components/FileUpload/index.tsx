@@ -1,5 +1,5 @@
 import { InputGroup } from '@chakra-ui/react'
-import { useRef } from 'react'
+import { Dispatch, SetStateAction, useRef } from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
 
 type FileUploadProps = {
@@ -7,6 +7,7 @@ type FileUploadProps = {
   accept?: string
   multiple?: boolean
   children?: React.ReactNode
+  setFiles?: Dispatch<SetStateAction<undefined>>
 }
 
 const FileUpload = (props: FileUploadProps) => {

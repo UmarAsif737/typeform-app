@@ -13,7 +13,10 @@ export class Document extends ExtendedBaseEntity {
     @Column({ nullable: true })
     fileType: string;
 
-    @Column({ type: 'bytea'})
+    @Column({ nullable: true })
+    filePath: string;
+
+    @Column({ type: 'bytea', nullable: true})
     data: Uint8Array;
 
     @IsDate()

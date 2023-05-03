@@ -44,8 +44,9 @@ export class DocumentService {
 
         const documentInput = {
             fileName,
-            data: input.buffer,
             fileType: input.mimetype,
+            filePath: input.path,
+            data: input.buffer,
             uploadUser, 
             project
         }

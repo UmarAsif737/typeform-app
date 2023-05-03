@@ -18,6 +18,8 @@ import { fetchProject } from '../_api/fetchProject'
 import { updateProject } from '../_api/updateProject'
 import NotEligible from '../details/NotEligible'
 import { useForm } from 'react-hook-form'
+import { uploadDocument } from '../_api/uploadDocument'
+import FormData from 'form-data'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
@@ -47,6 +49,7 @@ const Page = () => {
   const [researchPartners, setResearchPartners] = useState<any>()
   const [projectJournals, setProjectJournals] = useState<any>()
   const [managerWorkingHours, setManagerWorkingHours] = useState<any>()
+  const [screenshotOfParticipatingRDStaff, setScreenshotOfParticipatingRDStaff] = useState()
 
   useEffect(() => {
     loadPage()
@@ -87,6 +90,8 @@ const Page = () => {
 
   const formatData = async () => {
     const values = getValues()
+
+    //format all matrices
     const formatedContractors = contractors
       ? Object.values(contractors?.contractorState).map((contractor: any) => {
           return {
@@ -138,9 +143,6 @@ const Page = () => {
         })
       : undefined
 
-    const formData = new FormData()
-    formData.append('screenshotOfParticipatingRDStaff', values.screenshotOfParticipatingRDStaff[0])
-
     const input = {
       name: values.name,
       startOfProject: values.startOfProject?.value,
@@ -174,19 +176,28 @@ const Page = () => {
       managerWorkingHours: formatedManagerWorkingHours,
       screenshotOfParticipatingRDStaff: values.screenshotOfParticipatingRDStaff[0],
     }
-    return { input, formData }
+    return input
+  }
+
+  const uploadFiles = async () => {
+    const values = getValues()
+    if (values.screenshotOfParticipatingRDStaff) {
+      const formData = new FormData()
+      formData.append('screenshotOfParticipatingRDStaff', values.screenshotOfParticipatingRDStaff[0])
+      await uploadDocument(formData, session?.user?.accessToken as string, Number(project?.id))
+    }
   }
 
   const onSubmit = async () => {
     const token = session?.user?.accessToken as string
+    await uploadFiles()
     const formatedResponse = await formatData()
-    console.log(formatedResponse)
-    // updateProject(Number(query.projectId), token, formatedResponse)
-    // if (status === ProjectStatus.FROM_SCRATCH_FILLED_OUT) {
-    //   router.push('/home')
-    //   return
-    // }
-    // loadPage()
+    updateProject(Number(query.projectId), token, formatedResponse)
+    if (status === ProjectStatus.FROM_SCRATCH_FILLED_OUT) {
+      router.push('/home')
+      return
+    }
+    loadPage()
   }
 
   return (
@@ -218,7 +229,7 @@ const Page = () => {
             isCreated={true}
             inputVariant={InputVariants.WithBorder}
             register={register}
-            projectId={project.id}
+            setScreenshotOfParticipatingRDStaff={setScreenshotOfParticipatingRDStaff}
           />
         )}
         {status === ProjectStatus.PERSONELL_FILLED_OUT && (

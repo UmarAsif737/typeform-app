@@ -2,11 +2,12 @@ import { fetchAPIWithToken } from "hooks/useFetchSWR";
 import { makeUrl } from "utils/makeUrl";
 
 export const uploadDocument = async (
-    document: FormData,
+    formData: any,
     token: string,
     projectId: number,
   ) => {
-    const response = await fetchAPIWithToken(makeUrl('/projects/:projectId/documents/', { projectId }), token, 'PUT', document)
+    const url = makeUrl('/projects/:projectId/documents/', { projectId })
+    const response = await fetchAPIWithToken(url, token, 'POST', formData)
 
     const res = await response.json()
 

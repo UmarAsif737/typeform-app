@@ -5,18 +5,26 @@ import { Control, Controller, FieldValues, UseFormRegister } from 'react-hook-fo
 import { useTranslation } from 'react-i18next'
 import { TextVariants } from 'theme'
 import { FiFile } from 'react-icons/fi'
+import { Dispatch, SetStateAction } from 'react'
 
 type Props = {
   isDisabled: boolean
   isCreated: boolean
-  projectId: number
   inputVariant: string
   control: Control<FieldValues, any>
   register: UseFormRegister<FieldValues>
+  setScreenshotOfParticipatingRDStaff: Dispatch<SetStateAction<undefined>>
 }
 
 //status === TYPE_FILLED_OUT
-const ProjectDetailsForm2 = ({ isDisabled, isCreated = false, projectId, control, inputVariant, register }: Props) => {
+const ProjectDetailsForm2 = ({
+  isDisabled,
+  isCreated = false,
+  control,
+  inputVariant,
+  register,
+  setScreenshotOfParticipatingRDStaff,
+}: Props) => {
   const { t } = useTranslation()
 
   return (
@@ -73,7 +81,11 @@ const ProjectDetailsForm2 = ({ isDisabled, isCreated = false, projectId, control
           {t('projects.questions.details.screenshotOfParticipatingRDStaff')}
         </Text>
 
-        <FileUpload accept="image/*, pdf" register={register('screenshotOfParticipatingRDStaff')}>
+        <FileUpload
+          accept="image/*, pdf"
+          register={register('screenshotOfParticipatingRDStaff')}
+          setFiles={setScreenshotOfParticipatingRDStaff}
+        >
           <Button leftIcon={<Icon as={FiFile} />}>{t('buttons.upload')}</Button>
         </FileUpload>
 

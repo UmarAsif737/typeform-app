@@ -8,7 +8,7 @@ import { Express, Response } from 'express';
 import { FileInterceptor } from "@nestjs/platform-express";
 import { Multer } from 'multer';
 
-@Controller('/project/:projectId/')
+@Controller('/projects/:projectId/')
 @UseInterceptors(ClassSerializerInterceptor)
 export class DocumentController {
     constructor(private readonly documentService: DocumentService) {}
