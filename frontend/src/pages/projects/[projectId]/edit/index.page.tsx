@@ -184,14 +184,14 @@ const Page = () => {
             register={register}
             isCreated={false}
           />
-          <ProjectDetailsForm2
+          {/* <ProjectDetailsForm2
             isDisabled={false}
             inputVariant={InputVariants.WithBorder}
             control={control}
             register={register}
             isCreated={false}
-          />
-          <ProjectDetailsForm3
+          /> */}
+          {/* <ProjectDetailsForm3
             isDisabled={false}
             inputVariant={InputVariants.WithBorder}
             control={control}
@@ -205,7 +205,7 @@ const Page = () => {
             control={control}
             register={register}
             isCreated={false}
-          />
+          /> */}
         </VStack>
         <Flex justifyContent="space-between" mt={20} mb="10rem">
           <Button variant={ButtonVariants.Secondary} w="33.33%" onClick={handleGoBack}>

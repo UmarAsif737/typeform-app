@@ -346,14 +346,14 @@ const CompanyData = ({ company, isEdit }: Props) => {
           <Text variant={TextVariants.P14Semibold} color="gray.500">
             {t('company.details.subCopmany.title')}
           </Text>
-          <Matrix state={subCompanies} setState={setSubCompanies} questionKey="subCompanies" isDisabled={isDisabled} />
+          {/* <Matrix state={subCompanies} setState={setSubCompanies} questionKey="subCompanies" isDisabled={isDisabled} /> */}
         </VStack>
 
         <VStack alignItems="flex-start" w="100%" pb={5}>
           <Text variant={TextVariants.P14Semibold} color="gray.500">
             {t('company.details.fiscalYear.title')}
           </Text>
-          <Matrix state={fiscalYears} setState={setFiscalYears} questionKey="fiscalYears" isDisabled={isDisabled} />
+          {/* <Matrix state={fiscalYears} setState={setFiscalYears} questionKey="fiscalYears" isDisabled={isDisabled} /> */}
         </VStack>
 
         <HStack alignItems="flex-start" gap={5} w="100%">

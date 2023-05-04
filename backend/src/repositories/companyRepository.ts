@@ -6,7 +6,7 @@ import { Repository } from "typeorm";
 @Injectable()
 export class CompanyRepository extends Repository<Company> {
     async findCompany(id: number): Promise<Company> {
-        const company = await Company.findOne({ where: { id } });
+        const company = await Company.findOne({ where: { id }, relations: ['subCompanies', 'fiscalYears'] });
         if (!company) {
             throw new CompanyNotFoundError('id', String(id));
         }
