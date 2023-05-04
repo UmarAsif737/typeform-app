@@ -13,21 +13,6 @@ type Props = {
 export default function SubCompanyForm({ state, setState }: Props) {
   const { t } = useTranslation()
 
-  useEffect(() => {
-    const newItem = {
-      id: nanoid(),
-      name: '',
-      address: '',
-      legalForm: '',
-      federalState: '',
-      taxId: '',
-    }
-    setState({
-      ...state,
-      ...newItem,
-    })
-  }, [state, setState])
-
   return (
     <Box>
       <TableContainer w="80vw">
@@ -44,12 +29,12 @@ export default function SubCompanyForm({ state, setState }: Props) {
           </Thead>
           <Tbody>
             {state &&
-              state.map((item: any) => {
+              state?.map((item: any, index: any) => {
                 return (
                   <SubCompanyInput
                     key={item.id}
                     item={item}
-                    subCompanyId={item.id}
+                    subCompanyId={index}
                     subCompanyState={state}
                     setSubCompanyState={setState}
                   />

@@ -67,35 +67,35 @@ const CompanyData = ({ company, isEdit }: Props) => {
   const formatData = async () => {
     const values = getValues()
 
-    const formatedSubCompanies = subCompanies
-      ? Object.values(subCompanies?.subCompaniesState).map((subCompany: any) => {
-          return {
-            name: subCompany.name,
-            address: subCompany.address,
-            legalForm: subCompany.legalForm,
-            federalState: subCompany.federalState,
-            taxId: subCompany.taxId,
-          }
-        })
-      : undefined
+    // const formatedSubCompanies = subCompanies
+    //   ? Object.values(subCompanies?.subCompaniesState).map((subCompany: any) => {
+    //       return {
+    //         name: subCompany.name,
+    //         address: subCompany.address,
+    //         legalForm: subCompany.legalForm,
+    //         federalState: subCompany.federalState,
+    //         taxId: subCompany.taxId,
+    //       }
+    //     })
+    //   : undefined
 
-    const formatedFiscalYears = fiscalYears
-      ? Object.values(fiscalYears?.fiscalYearState).map((fiscalYear: any) => {
-          return {
-            year: fiscalYear.year,
-            preliminaryData: fiscalYear.preliminaryData,
-            abbreviatedFiscalYear: fiscalYear.abbreviatedFiscalYear,
-            timePeriodOfFiscalYear: fiscalYear.timePeriodOfFiscalYear,
-            numberOfEmployees: fiscalYear.numberOfEmployees,
-            numberOfRDEmployees: fiscalYear.numberOfRDEmployees,
-            revenue: fiscalYear.revenue,
-            internalCostsPersonell: fiscalYear.internalCostsPersonell,
-            internalCostsMaterial: fiscalYear.internalCostsMaterial,
-            externalContractCostsInEU: fiscalYear.externalContractCostsInEU,
-            externalContractCostsOutsideEU: fiscalYear.externalContractCostsOutsideEU,
-          }
-        })
-      : undefined
+    // const formatedFiscalYears = fiscalYears
+    //   ? Object.values(fiscalYears?.fiscalYearState).map((fiscalYear: any) => {
+    //       return {
+    //         year: fiscalYear.year,
+    //         preliminaryData: fiscalYear.preliminaryData,
+    //         abbreviatedFiscalYear: fiscalYear.abbreviatedFiscalYear,
+    //         timePeriodOfFiscalYear: fiscalYear.timePeriodOfFiscalYear,
+    //         numberOfEmployees: fiscalYear.numberOfEmployees,
+    //         numberOfRDEmployees: fiscalYear.numberOfRDEmployees,
+    //         revenue: fiscalYear.revenue,
+    //         internalCostsPersonell: fiscalYear.internalCostsPersonell,
+    //         internalCostsMaterial: fiscalYear.internalCostsMaterial,
+    //         externalContractCostsInEU: fiscalYear.externalContractCostsInEU,
+    //         externalContractCostsOutsideEU: fiscalYear.externalContractCostsOutsideEU,
+    //       }
+    //     })
+    //   : undefined
 
     return {
       name: values.name,
@@ -113,15 +113,17 @@ const CompanyData = ({ company, isEdit }: Props) => {
       isLegallyIndependent: values.isLegallyIndependent,
       hasUpdatedElsterCertificate: values.hasUpdatedElsterCertificate,
       publicFundingAmount: values.publicFundingAmount,
-      subCompanies: formatedSubCompanies,
-      fiscalYears: formatedFiscalYears,
+      // subCompanies: formatedSubCompanies,
+      // fiscalYears: formatedFiscalYears,
     }
   }
 
   useEffect(() => {
     fulfillFields()
+    setSubCompanies(company?.subCompanies)
   }, [company])
-
+  console.log(company)
+  console.log(subCompanies)
   const onSubmit = async () => {
     const token = session?.user?.accessToken as string
     const formatedResponse = await formatData()
@@ -145,7 +147,7 @@ const CompanyData = ({ company, isEdit }: Props) => {
       )
     }
   }
-
+  console.log(subCompanies)
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <VStack w="100%" alignItems="flex-start" gap={5}>
@@ -346,7 +348,14 @@ const CompanyData = ({ company, isEdit }: Props) => {
           <Text variant={TextVariants.P14Semibold} color="gray.500">
             {t('company.details.subCopmany.title')}
           </Text>
-          {/* <Matrix state={subCompanies} setState={setSubCompanies} questionKey="subCompanies" isDisabled={isDisabled} /> */}
+          {subCompanies && (
+            <Matrix
+              state={subCompanies}
+              setState={setSubCompanies}
+              questionKey="subCompanies"
+              isDisabled={isDisabled}
+            />
+          )}
         </VStack>
 
         <VStack alignItems="flex-start" w="100%" pb={5}>

@@ -8,7 +8,7 @@ const configService = new ConfigService();
 const host = configService.get('POSTGRES_HOST');
 const port = configService.get('POSTGRES_PORT');
 const username = configService.get('POSTGRES_USER');
-// const password = configService.get('POSTGRES_PASSWORD');
+const password = configService.get('POSTGRES_PASSWORD');
 const database = configService.get('POSTGRES_DB');
 
 if (!(host && port && username && database)) {
@@ -20,7 +20,7 @@ export default new DataSource({
     host,
     port: Number(port),
     username,
-    // password,
+    password,
     database,
     entities: [__dirname + '/src/entities/*.{ts,js}'],
     migrations: [__dirname + '/src/database/migrations/*{.ts,.js}'],

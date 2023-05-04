@@ -329,11 +329,11 @@ export default function Matrix({ questionKey, isDisabled = true, state, setState
   }, [t])
 
   const data = useMemo(() => state, [state])
-
+  console.log(data)
   switch (questionKey) {
     case 'contractors': {
       if (data && isDisabled) {
-        return data.length > 0 ? (
+        return data?.length > 0 ? (
           <SimpleTable columns={contractorsColumns} data={data} />
         ) : (
           <Text variant={TextVariants.P14Standart} color="gray.500">
@@ -346,7 +346,7 @@ export default function Matrix({ questionKey, isDisabled = true, state, setState
 
     case 'researchPartners': {
       if (data && isDisabled) {
-        return data.length > 0 ? (
+        return data?.length > 0 ? (
           <SimpleTable columns={researchPartnersColumns} data={data} />
         ) : (
           <Text variant={TextVariants.P14Standart} color="gray.500">
@@ -359,7 +359,7 @@ export default function Matrix({ questionKey, isDisabled = true, state, setState
 
     case 'projectJournals': {
       if (data && isDisabled) {
-        return data.length > 0 ? (
+        return data?.length > 0 ? (
           <SimpleTable columns={projectJournalsColumns} data={data} />
         ) : (
           <Text variant={TextVariants.P14Standart} color="gray.500">
@@ -372,7 +372,7 @@ export default function Matrix({ questionKey, isDisabled = true, state, setState
 
     case 'managerWorkingHours': {
       if (data && isDisabled) {
-        return data.length > 0 ? (
+        return data?.length > 0 ? (
           <SimpleTable columns={managerWorkingHoursColumns} data={data} />
         ) : (
           <Text variant={TextVariants.P14Standart} color="gray.500">
@@ -385,7 +385,7 @@ export default function Matrix({ questionKey, isDisabled = true, state, setState
 
     case 'financialFrameworks': {
       if (data && isDisabled) {
-        return data.length > 0 ? (
+        return data?.length > 0 ? (
           <SimpleTable columns={financialFrameworkColumns} data={data} />
         ) : (
           <Text variant={TextVariants.P14Standart} color="gray.500">
@@ -398,7 +398,7 @@ export default function Matrix({ questionKey, isDisabled = true, state, setState
 
     case 'personalFrameworks': {
       if (data && isDisabled) {
-        return data.length > 0 ? (
+        return data?.length > 0 ? (
           <SimpleTable columns={personalFrameworkColumns} data={data} />
         ) : (
           <Text variant={TextVariants.P14Standart} color="gray.500">
@@ -411,7 +411,7 @@ export default function Matrix({ questionKey, isDisabled = true, state, setState
 
     case 'publicOrPrivateSubsidies': {
       if (data && isDisabled) {
-        return data.length > 0 ? (
+        return data?.length > 0 ? (
           <SimpleTable columns={subsidiesCostsColumns} data={data} />
         ) : (
           <Text variant={TextVariants.P14Standart} color="gray.500">
@@ -425,7 +425,7 @@ export default function Matrix({ questionKey, isDisabled = true, state, setState
 
     case 'subCompanies': {
       if (data && isDisabled) {
-        return data.length > 0 ? (
+        return data?.length ? (
           <SimpleTable columns={subCompaniesColumns} data={data} />
         ) : (
           <Text variant={TextVariants.P14Standart} color="gray.500">
@@ -438,7 +438,7 @@ export default function Matrix({ questionKey, isDisabled = true, state, setState
 
     case 'fiscalYears': {
       if (data && isDisabled) {
-        return data.length > 0 ? (
+        return data?.length > 0 ? (
           <SimpleTable columns={fiscalYearsColumns} data={data} />
         ) : (
           <Text variant={TextVariants.P14Standart} color="gray.500">

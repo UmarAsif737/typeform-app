@@ -19,9 +19,8 @@ export default function SubCompanyInput({ subCompanyId, item, subCompanyState, s
             rounded="md"
             colorScheme="red"
             onClick={() => {
-              const newState = { ...subCompanyState }
-              delete newState[subCompanyId]
-              setSubCompanyState(newState)
+              const updatedSubCompanyState = subCompanyState.filter((subCompany, index) => index !== subCompanyId)
+              setSubCompanyState(updatedSubCompanyState)
             }}
           >
             <Icon as={CloseIcon} color="white" />
@@ -36,13 +35,11 @@ export default function SubCompanyInput({ subCompanyId, item, subCompanyState, s
             value={item.name}
             variant={InputVariants.WithBorder}
             onChange={(e) =>
-              setSubCompanyState({
-                ...subCompanyState,
-                [subCompanyId]: {
-                  ...subCompanyState,
-                  name: e.currentTarget.value,
-                },
-              })
+              setSubCompanyState(
+                subCompanyState.map((subCompany, index) =>
+                  index === subCompanyId ? { ...subCompany, name: e.currentTarget.value } : subCompany
+                )
+              )
             }
             // isInvalid={researchPartnerState[researchPartnerId].contractor.length < 1}
             errorBorderColor="crimson"
@@ -57,13 +54,11 @@ export default function SubCompanyInput({ subCompanyId, item, subCompanyState, s
             value={item.address}
             variant={InputVariants.WithBorder}
             onChange={(e) =>
-              setSubCompanyState({
-                ...subCompanyState,
-                [subCompanyId]: {
-                  ...subCompanyState,
-                  address: e.currentTarget.value,
-                },
-              })
+              setSubCompanyState(
+                subCompanyState.map((subCompany, index) =>
+                  index === subCompanyId ? { ...subCompany, address: e.currentTarget.value } : subCompany
+                )
+              )
             }
             // isInvalid={researchPartnerState[researchPartnerId].contractor.length < 1}
             errorBorderColor="crimson"
@@ -78,13 +73,11 @@ export default function SubCompanyInput({ subCompanyId, item, subCompanyState, s
             value={item.legalForm}
             variant={InputVariants.WithBorder}
             onChange={(e) =>
-              setSubCompanyState({
-                ...subCompanyState,
-                [subCompanyId]: {
-                  ...subCompanyState,
-                  legalForm: e.currentTarget.value,
-                },
-              })
+              setSubCompanyState(
+                subCompanyState.map((subCompany, index) =>
+                  index === subCompanyId ? { ...subCompany, legalForm: e.currentTarget.value } : subCompany
+                )
+              )
             }
             // isInvalid={researchPartnerState[researchPartnerId].contractor.length < 1}
             errorBorderColor="crimson"
@@ -99,13 +92,11 @@ export default function SubCompanyInput({ subCompanyId, item, subCompanyState, s
             value={item.federalState}
             variant={InputVariants.WithBorder}
             onChange={(e) =>
-              setSubCompanyState({
-                ...subCompanyState,
-                [subCompanyId]: {
-                  ...subCompanyState,
-                  federalState: e.currentTarget.value,
-                },
-              })
+              setSubCompanyState(
+                subCompanyState.map((subCompany, index) =>
+                  index === subCompanyId ? { ...subCompany, federalState: e.currentTarget.value } : subCompany
+                )
+              )
             }
             // isInvalid={researchPartnerState[researchPartnerId].contractor.length < 1}
             errorBorderColor="crimson"
@@ -120,13 +111,11 @@ export default function SubCompanyInput({ subCompanyId, item, subCompanyState, s
             value={item.taxId}
             variant={InputVariants.WithBorder}
             onChange={(e) =>
-              setSubCompanyState({
-                ...subCompanyState,
-                [subCompanyId]: {
-                  ...subCompanyState,
-                  taxId: e.currentTarget.value,
-                },
-              })
+              setSubCompanyState(
+                subCompanyState.map((subCompany, index) =>
+                  index === subCompanyId ? { ...subCompany, taxId: e.currentTarget.value } : subCompany
+                )
+              )
             }
             // isInvalid={researchPartnerState[researchPartnerId].contractor.length < 1}
             errorBorderColor="crimson"
