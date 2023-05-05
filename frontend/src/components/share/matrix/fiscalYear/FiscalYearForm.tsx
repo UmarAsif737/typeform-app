@@ -13,27 +13,6 @@ type Props = {
 export default function SubCompanyForm({ state, setState }: Props) {
   const { t } = useTranslation()
 
-  useEffect(() => {
-    const newItem = {
-      id: nanoid(),
-      year: 0,
-      preliminaryData: 0,
-      abbreviatedFiscalYear: '',
-      timePeriodOfFiscalYear: '',
-      numberOfEmployees: 0,
-      numberOfRDEmployees: 0,
-      revenue: 0,
-      internalCostsPersonell: 0,
-      internalCostsMaterial: 0,
-      externalContractCostsInEU: 0,
-      externalContractCostsOutsideEU: 0,
-    }
-    setState({
-      ...state,
-      ...newItem,
-    })
-  }, [state, setState])
-
   return (
     <Box>
       <TableContainer w="80vw">
@@ -56,12 +35,12 @@ export default function SubCompanyForm({ state, setState }: Props) {
           </Thead>
           <Tbody>
             {state &&
-              state.map((item: any) => {
+              state.map((item: any, index: any) => {
                 return (
                   <FiscalYearInput
                     key={item.id}
                     item={item}
-                    fiscalYearId={item.id}
+                    fiscalYearId={index}
                     fiscalYearState={state}
                     setFiscalYearSate={setState}
                   />
@@ -78,17 +57,17 @@ export default function SubCompanyForm({ state, setState }: Props) {
         onClick={() => {
           const newItem = {
             id: nanoid(),
-            year: 0,
-            preliminaryData: 0,
+            year: '',
+            preliminaryData: '',
             abbreviatedFiscalYear: '',
             timePeriodOfFiscalYear: '',
-            numberOfEmployees: 0,
-            numberOfRDEmployees: 0,
-            revenue: 0,
-            internalCostsPersonell: 0,
-            internalCostsMaterial: 0,
-            externalContractCostsInEU: 0,
-            externalContractCostsOutsideEU: 0,
+            numberOfEmployees: '',
+            numberOfRDEmployees: '',
+            revenue: '',
+            internalCostsPersonell: '',
+            internalCostsMaterial: '',
+            externalContractCostsInEU: '',
+            externalContractCostsOutsideEU: '',
           }
           const newState = [...state, newItem]
           setState(newState)

@@ -47,6 +47,8 @@ const CompanyData = ({ company, isEdit }: Props) => {
   }, [isEdit])
 
   const fulfillFields = async () => {
+    setSubCompanies(company?.subCompanies)
+    setFiscalYears(company?.fiscalYears)
     setValue('name', company?.name ?? undefined)
     setValue('address', company?.address ?? undefined)
     setValue('isGermanCompany', company?.isGermanCompany ?? false)
@@ -114,13 +116,12 @@ const CompanyData = ({ company, isEdit }: Props) => {
       hasUpdatedElsterCertificate: values.hasUpdatedElsterCertificate,
       publicFundingAmount: values.publicFundingAmount,
       subCompanies: subCompanies,
-      // fiscalYears: formatedFiscalYears,
+      fiscalYears: fiscalYears,
     }
   }
 
   useEffect(() => {
     fulfillFields()
-    setSubCompanies(company?.subCompanies)
   }, [company])
 
   const onSubmit = async () => {
@@ -358,7 +359,7 @@ const CompanyData = ({ company, isEdit }: Props) => {
           <Text variant={TextVariants.P14Semibold} color="gray.500">
             {t('company.details.fiscalYear.title')}
           </Text>
-          {/* <Matrix state={fiscalYears} setState={setFiscalYears} questionKey="fiscalYears" isDisabled={isDisabled} /> */}
+          <Matrix state={fiscalYears} setState={setFiscalYears} questionKey="fiscalYears" isDisabled={isDisabled} />
         </VStack>
 
         <HStack alignItems="flex-start" gap={5} w="100%">

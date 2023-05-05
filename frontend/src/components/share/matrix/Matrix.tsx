@@ -12,6 +12,7 @@ import { InputVariants, TextVariants } from 'theme'
 import { Cell } from 'react-table'
 import SimpleTable from 'components/Table/SimpleTable'
 import SubCompanyForm from './subCompany/SubCompanyForm'
+import FiscalYearForm from './fiscalYear/FiscalYearForm'
 
 type Props = {
   questionKey: string
@@ -446,7 +447,7 @@ export default function Matrix({ questionKey, isDisabled = true, state, setState
           </Text>
         )
       }
-      return <SubCompanyForm state={state} setState={setState} />
+      return <FiscalYearForm state={state} setState={setState} />
     }
 
     default:
