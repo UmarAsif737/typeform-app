@@ -51,11 +51,11 @@ export default function SubCompanyForm({ state, setState }: Props) {
         onClick={() => {
           const newItem = {
             id: nanoid(),
-            name: 0,
-            address: 0,
-            legalForm: 0,
-            federalState: 0,
-            taxId: 0,
+            name: '',
+            address: '',
+            legalForm: '',
+            federalState: '',
+            taxId: '',
           }
           const newState = [...state, newItem]
           setState(newState)

@@ -113,7 +113,7 @@ const CompanyData = ({ company, isEdit }: Props) => {
       isLegallyIndependent: values.isLegallyIndependent,
       hasUpdatedElsterCertificate: values.hasUpdatedElsterCertificate,
       publicFundingAmount: values.publicFundingAmount,
-      // subCompanies: formatedSubCompanies,
+      subCompanies: subCompanies,
       // fiscalYears: formatedFiscalYears,
     }
   }
@@ -122,15 +122,12 @@ const CompanyData = ({ company, isEdit }: Props) => {
     fulfillFields()
     setSubCompanies(company?.subCompanies)
   }, [company])
-  console.log(company)
-  console.log(subCompanies)
+
   const onSubmit = async () => {
     const token = session?.user?.accessToken as string
     const formatedResponse = await formatData()
-
     try {
-      updateCompany(token, formatedResponse)
-      router.push('/home')
+      await updateCompany(token, formatedResponse)
 
       toast(
         ToastStatus.SUCCESS,
@@ -147,9 +144,8 @@ const CompanyData = ({ company, isEdit }: Props) => {
       )
     }
   }
-  console.log(subCompanies)
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={onSubmit}>
       <VStack w="100%" alignItems="flex-start" gap={5}>
         <HStack alignItems="flex-start" gap={5} w="100%">
           <VStack alignItems="flex-start" w="100%">
